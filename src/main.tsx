@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Typography } from "./components/Typography";
 import "./index.css";
+import { Typography } from "./components/Typography";
 
 const App = () => {
   return (
