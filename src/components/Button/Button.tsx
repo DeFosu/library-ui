@@ -47,7 +47,7 @@ export const Button = ({
         ${variantClasses[variant]}
         ${sizeClasses[size]}
         ${iconClasses}
-        ${className}
+        !${className}
       `}
       onClick={onClick}
       disabled={disabled}
