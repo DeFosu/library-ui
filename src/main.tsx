@@ -1,7 +1,7 @@
 import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { ToggleContainer } from "./components/Toggle";
+import { Dropdown } from "./components/Dropdown";
 
 const App = () => {
   const [selectedOption, setSelectedOption] = useState<string>("");
@@ -11,6 +11,12 @@ const App = () => {
     { title: "First Option", value: "option1" },
     { title: "Second Option", value: "option2" },
     { title: "Third Option", value: "option3" },
+    { title: "Third Option", value: "option4" },
+    { title: "Third Option", value: "option5" },
+    { title: "Third Option", value: "option6" },
+    { title: "Third Option", value: "option7" },
+    { title: "Third Option", value: "option8" },
+    { title: "Third Option", value: "option9" },
   ];
 
   const multiOptions = [
@@ -36,24 +42,28 @@ const App = () => {
 
   return (
     <main className="flex flex-col items-center justify-center h-screen dark:bg-gray-900 light:bg-red-500 gap-8 p-4 text-gray-300">
-      <ToggleContainer
-        options={singleOptions}
-        selected={selectedOption}
-        onSelect={handleSingleSelect}
-      >
-        Single Select Toggle
-      </ToggleContainer>
-      <p>Selected: {selectedOption}</p>
+      <div className="w-64">
+        <h2 className="text-xl font-bold mb-4">Single Select Dropdown</h2>
+        <Dropdown
+          options={singleOptions}
+          selected={selectedOption}
+          onSelect={handleSingleSelect}
+          placeholder="Select an option"
+        />
+        <p className="mt-2">Selected: {selectedOption}</p>
+      </div>
 
-      <ToggleContainer
-        options={multiOptions}
-        selected={selectedOptions}
-        onSelect={handleMultiSelect}
-        multiple
-      >
-        Multi Select Toggle
-      </ToggleContainer>
-      <p>Selected: {selectedOptions.join(", ")}</p>
+      <div className="w-64">
+        <h2 className="text-xl font-bold mb-4">Multi Select Dropdown</h2>
+        <Dropdown
+          options={multiOptions}
+          selected={selectedOptions}
+          onSelect={handleMultiSelect}
+          multiple
+          placeholder="Select options"
+        />
+        <p className="mt-2">Selected: {selectedOptions.join(", ")}</p>
+      </div>
     </main>
   );
 };
