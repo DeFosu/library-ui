@@ -7,6 +7,18 @@ const App = () => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
+  const singleOptions = [
+    { title: "First Option", value: "option1" },
+    { title: "Second Option", value: "option2" },
+    { title: "Third Option", value: "option3" },
+  ];
+
+  const multiOptions = [
+    { title: "Option Alpha", value: "alpha" },
+    { title: "Option Beta", value: "beta" },
+    { title: "Option Gamma", value: "gamma" },
+  ];
+
   const handleSingleSelect = (value: string) => {
     setSelectedOption(value);
     console.log("Selected option:", value);
@@ -25,23 +37,23 @@ const App = () => {
   return (
     <main className="flex flex-col items-center justify-center h-screen dark:bg-gray-900 light:bg-red-500 gap-8 p-4 text-gray-300">
       <ToggleContainer
-        options={["Option 1", "Option 2", "Option 3"]}
+        options={singleOptions}
         selected={selectedOption}
         onSelect={handleSingleSelect}
       >
         Single Select Toggle
       </ToggleContainer>
-      <p>{selectedOption}</p>
+      <p>Selected: {selectedOption}</p>
 
       <ToggleContainer
-        options={["Option A", "Option B", "Option C"]}
+        options={multiOptions}
         selected={selectedOptions}
         onSelect={handleMultiSelect}
         multiple
       >
         Multi Select Toggle
       </ToggleContainer>
-      <p>{selectedOptions.join(", ")}</p>
+      <p>Selected: {selectedOptions.join(", ")}</p>
     </main>
   );
 };

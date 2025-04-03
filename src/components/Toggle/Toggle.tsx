@@ -3,8 +3,13 @@ import { type ReactNode } from "react";
 type ToggleVariant = "default" | "outlined" | "filled";
 type ToggleSize = "sm" | "md" | "lg";
 
+export type ToggleOption = {
+  title: string;
+  value: string;
+};
+
 type ToggleProps = {
-  children: ReactNode;
+  option: ToggleOption;
   variant?: ToggleVariant;
   size?: ToggleSize;
   isActive?: boolean;
@@ -41,7 +46,7 @@ const variantClasses = {
 };
 
 export const Toggle = ({
-  children,
+  option,
   variant = "default",
   size = "md",
   isActive = false,
@@ -66,8 +71,9 @@ export const Toggle = ({
       `}
       onClick={onClick}
       disabled={disabled}
+      title={option.value}
     >
-      {children}
+      {option.title}
     </button>
   );
 };
