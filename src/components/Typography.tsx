@@ -1,65 +1,55 @@
-import { ReactNode } from "react";
-
-type TypographyVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
-type TypographyColor =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "error"
-  | "warning"
-  | "info";
-type TypographyWeight = "light" | "normal" | "medium" | "semibold" | "bold";
+import React from "react";
 
 type TypographyProps = {
-  variant?: TypographyVariant;
-  color?: TypographyColor;
-  weight?: TypographyWeight;
+  variant?:
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "body1"
+    | "body2"
+    | "caption";
+  children: React.ReactNode;
   className?: string;
-  children: ReactNode;
 };
 
-const colorClasses = {
-  primary: "text-gray-900 dark:text-white",
-  secondary: "text-gray-600 dark:text-gray-400",
-  success: "text-green-600 dark:text-green-400",
-  error: "text-red-600 dark:text-red-400",
-  warning: "text-yellow-600 dark:text-yellow-400",
-  info: "text-blue-600 dark:text-blue-400",
+const variantStyles = {
+  h1: "text-4xl font-bold tracking-tight text-gray-900 dark:text-white",
+  h2: "text-3xl font-semibold tracking-tight text-gray-900 dark:text-white",
+  h3: "text-2xl font-semibold tracking-tight text-gray-900 dark:text-white",
+  h4: "text-xl font-semibold tracking-tight text-gray-900 dark:text-white",
+  h5: "text-lg font-semibold tracking-tight text-gray-900 dark:text-white",
+  h6: "text-base font-semibold tracking-tight text-gray-900 dark:text-white",
+  body1: "text-base leading-relaxed text-gray-700 dark:text-gray-300",
+  body2: "text-sm leading-relaxed text-gray-600 dark:text-gray-400",
+  caption: "text-xs text-gray-500 dark:text-gray-400",
 };
 
-const weightClasses = {
-  light: "font-light",
-  normal: "font-normal",
-  medium: "font-medium",
-  semibold: "font-semibold",
-  bold: "font-bold",
-};
-
-const variantClasses = {
-  h1: "text-4xl md:text-5xl lg:text-6xl",
-  h2: "text-3xl md:text-4xl lg:text-5xl",
-  h3: "text-2xl md:text-3xl lg:text-4xl",
-  h4: "text-xl md:text-2xl lg:text-3xl",
-  h5: "text-lg md:text-xl lg:text-2xl",
-  h6: "text-base md:text-lg lg:text-xl",
-  p: "text-base",
-  span: "text-base",
-};
-
-export const Typography = ({
-  variant = "p",
-  color = "primary",
-  weight = "normal",
-  className = "",
+export const Typography: React.FC<TypographyProps> = ({
+  variant = "body1",
   children,
-}: TypographyProps) => {
-  const Component = variant;
-  const classes = [
-    variantClasses[variant],
-    colorClasses[color],
-    weightClasses[weight],
-    className,
-  ].join(" ");
+  className = "",
+}) => {
+  const baseStyles = variantStyles[variant];
+  const combinedClassName = `${baseStyles} ${className}`;
 
-  return <Component className={classes}>{children}</Component>;
+  // Use semantic HTML elements based on variant
+  switch (variant) {
+    case "h1":
+      return <h1 className={combinedClassName}>{children}</h1>;
+    case "h2":
+      return <h2 className={combinedClassName}>{children}</h2>;
+    case "h3":
+      return <h3 className={combinedClassName}>{children}</h3>;
+    case "h4":
+      return <h4 className={combinedClassName}>{children}</h4>;
+    case "h5":
+      return <h5 className={combinedClassName}>{children}</h5>;
+    case "h6":
+      return <h6 className={combinedClassName}>{children}</h6>;
+    default:
+      return <p className={combinedClassName}>{children}</p>;
+  }
 };
