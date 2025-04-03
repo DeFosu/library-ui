@@ -1,55 +1,61 @@
-import { StrictMode, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { Typography } from "./components/Typography";
 import "./index.css";
-import { Modal } from "./components/Modal";
 
 const App = () => {
-  const [isSimpleModalOpen, setIsSimpleModalOpen] = useState(false);
-  const [isContentModalOpen, setIsContentModalOpen] = useState(false);
-
   return (
-    <main className="flex flex-col items-center justify-center h-screen dark:bg-gray-900 light:bg-red-500 gap-8 p-4 text-gray-300">
-      <button
-        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-        onClick={() => setIsSimpleModalOpen(true)}
-      >
-        Open Simple Modal
-      </button>
+    <main className="flex flex-col items-center justify-center min-h-screen dark:bg-gray-900 light:bg-red-500 gap-8 p-4">
+      <div className="max-w-4xl w-full space-y-8">
+        {/* Typography Examples */}
+        <section className="space-y-4">
+          <Typography variant="h1">Heading 1</Typography>
+          <Typography variant="h2">Heading 2</Typography>
+          <Typography variant="h3">Heading 3</Typography>
+          <Typography variant="h4">Heading 4</Typography>
+          <Typography variant="h5">Heading 5</Typography>
+          <Typography variant="h6">Heading 6</Typography>
+        </section>
 
-      <button
-        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-        onClick={() => setIsContentModalOpen(true)}
-      >
-        Open Modal with Content
-      </button>
+        <section className="space-y-4">
+          <Typography variant="p" weight="light">
+            Light weight paragraph text
+          </Typography>
+          <Typography variant="p" weight="normal">
+            Normal weight paragraph text
+          </Typography>
+          <Typography variant="p" weight="medium">
+            Medium weight paragraph text
+          </Typography>
+          <Typography variant="p" weight="semibold">
+            Semibold weight paragraph text
+          </Typography>
+          <Typography variant="p" weight="bold">
+            Bold weight paragraph text
+          </Typography>
+        </section>
 
-      <Modal
-        isOpen={isSimpleModalOpen}
-        onClose={() => setIsSimpleModalOpen(false)}
-      />
-
-      <Modal
-        isOpen={isContentModalOpen}
-        onClose={() => setIsContentModalOpen(false)}
-      >
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl">
-          <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-            Modal Content
-          </h2>
-          <p className="text-gray-700 dark:text-gray-300">
-            This is some content inside the modal. You can put any React
-            component here.
-          </p>
-          <div className="mt-4 flex justify-end">
-            <button
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-              onClick={() => setIsContentModalOpen(false)}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </Modal>
+        <section className="space-y-4">
+          <Typography variant="p" color="primary">
+            Primary text color
+          </Typography>
+          <Typography variant="p" color="secondary">
+            Secondary text color
+          </Typography>
+          <Typography variant="p" color="success">
+            Success text color
+          </Typography>
+          <Typography variant="p" color="error">
+            Error text color
+          </Typography>
+          <Typography variant="p" color="warning">
+            Warning text color
+          </Typography>
+          <Typography variant="p" color="info">
+            Info text color
+          </Typography>
+        </section>
+      </div>
     </main>
   );
 };
